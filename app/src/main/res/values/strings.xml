@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Tips</string>
+    <string name="precio_toal">Total:</string>
+    <string name="labeltip">Propina:</string>
+    <string name="labelbase">Base:</string>
+    <string name="etBaseHint">Insert the base</string>
+    <string name="labelPromo">Made with ❤️ by JOqupa</string>
+    <string name="labelNumberOfPeople">Nº\nof\npeople:</string>
+    <string name="labelIndividual">Individual:</string>
+    <string name="press_o_round_up">Press\nto\nround up</string>
+    <string name="btRoundUp">Up</string>
+    <string name="btRoundDown">Down\t</string>
+</resources>
