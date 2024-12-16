@@ -1,11 +1,9 @@
 package com.example.tips
 
 import android.animation.ArgbEvaluator
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.widget.EditText
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
@@ -14,7 +12,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import kotlin.math.log
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     //● Add the ability to round the total bill up or down, which should update the tip amount and
@@ -27,7 +25,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvTipAmount: TextView
     private lateinit var tvTotal: TextView
     private lateinit var tvTipQualityLabel: TextView
-    private lateinit var tvTipQualityEmoji: TextView
     private lateinit var etNumberOfPeople: EditText
     private lateinit var tvIndividualBudget: TextView
 
@@ -41,13 +38,12 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         etBase = findViewById(R.id.etBase)
+        etNumberOfPeople = findViewById(R.id.etNumberOfPeople)
         tvTipPercent = findViewById(R.id.tvTipPercent)
+        tvTipQualityLabel = findViewById(R.id.tipQualityLabel)
         sbTip = findViewById(R.id.sbTip)
         tvTipAmount = findViewById(R.id.tvTipAmount)
         tvTotal = findViewById(R.id.tvTotal)
-        tvTipQualityLabel = findViewById(R.id.tipQualityLabel)
-        tvTipQualityEmoji = findViewById(R.id.tipQualityEmoji)
-        etNumberOfPeople = findViewById(R.id.etNumberOfPeople)
         tvIndividualBudget = findViewById(R.id.tvIndividualBudget)
 
         etBase.addTextChangedListener(object: TextWatcher{
@@ -67,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         })
         sbTip.setOnSeekBarChangeListener(object: OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                tvTipPercent.text = "${progress}%"
+                tvTipPercent.text = String.format(Locale.getDefault(), "%d%%", progress)
                 calculateTipQuality(progress)
                 calculateTipAmount()
             }
@@ -84,8 +80,7 @@ class MainActivity : AppCompatActivity() {
             20..24 to Pair("Great", "\uD83D\uDE01")
         )
         val (text, emoji) = qualityMap.entries.find { progress in it.key }?.value ?: Pair("Amazing", "\uD83E\uDD11")
-        tvTipQualityLabel.text = text
-        tvTipQualityEmoji.text = emoji
+        tvTipQualityLabel.text = String.format(Locale.getDefault(), "%s %s", text, emoji)
 
         val color = ArgbEvaluator().evaluate(
             progress.toFloat()/30,
@@ -93,28 +88,29 @@ class MainActivity : AppCompatActivity() {
             getColor(R.color.Optimal))
         tvTipQualityLabel.setTextColor(color.toString().toInt())
     }
+
     private fun calculateTipAmount() {
         if (etBase.text.isEmpty()) {
-            tvTipAmount.text = ""
-            tvTotal.text = ""
+            tvTipAmount.text = String.format(Locale.getDefault(), "")
+            tvTotal.text = String.format(Locale.getDefault(), "")
             return
         }
         val baseAmount = etBase.text.toString().toDouble()
         val tipPercent = sbTip.progress
         val tipAmount = baseAmount * tipPercent / 100
         val total = tipAmount + baseAmount
-        tvTipAmount.text = String.format("%.2f", tipAmount)
-        tvTotal.text = String.format("%.2f", total)
+        tvTipAmount.text = String.format(Locale.getDefault(), "%.2f", tipAmount)
+        tvTotal.text = String.format(Locale.getDefault(), "%.2f", total)
         if (etNumberOfPeople.text.isNotEmpty()) {
             calculateIndividualBudget(total)
         }
         else {
-            tvIndividualBudget.text = String.format("%.2f", total)
+            tvIndividualBudget.text = String.format(Locale.getDefault(), "%.2f", total)
         }
     }
 
     private fun calculateIndividualBudget(total: Double) {
         val numberOfPersons = etNumberOfPeople.text.toString().toInt()
-        tvIndividualBudget.text = String.format("%.2f", total/numberOfPersons)
+        tvIndividualBudget.text = String.format(Locale.getDefault(),"%.2f", total/numberOfPersons)
     }
 }

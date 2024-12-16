@@ -7,69 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tvIndividualBudget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/labelIndividualBudget"
-        app:layout_constraintStart_toEndOf="@id/labelIndividualBudget"
-        app:layout_constraintTop_toTopOf="@id/labelIndividualBudget"
-        tools:text="20" />
-
-    <TextView
-        android:id="@+id/labelIndividualBudget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:text="@string/labelIndividual"
-        app:layout_constraintBottom_toBottomOf="@id/tvTotal"
-        app:layout_constraintStart_toEndOf="@id/tvTotal"
-        app:layout_constraintTop_toTopOf="@id/tvTotal" />
-
-    <EditText
-        android:id="@+id/etNumberOfPeople"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:ems="2"
-        android:inputType="number"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/labelNumberOfPeople"
-        app:layout_constraintStart_toEndOf="@id/labelNumberOfPeople"
-        app:layout_constraintTop_toTopOf="@id/labelNumberOfPeople" />
-
-    <TextView
-        android:id="@+id/labelNumberOfPeople"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="@string/labelNumberOfPeople"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@id/etBase"
-        app:layout_constraintStart_toEndOf="@id/etBase"
-        app:layout_constraintTop_toTopOf="@id/etBase" />
-
-    <TextView
-        android:id="@+id/tipQualityEmoji"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/tipQualityLabel"
-        app:layout_constraintStart_toEndOf="@id/tipQualityLabel"
-        app:layout_constraintTop_toTopOf="@id/tipQualityLabel"
-        tools:text="😶" />
-
-    <TextView
-        android:id="@+id/tipQualityLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/sbTip"
-        app:layout_constraintStart_toStartOf="@id/sbTip"
-        app:layout_constraintTop_toBottomOf="@id/sbTip"
-        tools:text="Good" />
-
+    <!--Primera fila-->
     <TextView
         android:id="@+id/LabelBase"
         android:layout_width="wrap_content"
@@ -78,7 +16,7 @@
         android:layout_marginTop="32dp"
         android:text="@string/labelbase"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etBase"
@@ -95,25 +33,39 @@
         tools:text="50.00" />
 
     <TextView
-        android:id="@+id/tvTipAmount"
+        android:id="@+id/labelNumberOfPeople"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/LabelTip"
-        app:layout_constraintStart_toStartOf="@+id/sbTip"
-        app:layout_constraintTop_toTopOf="@+id/LabelTip"
-        tools:text="17.00" />
+        android:layout_marginStart="32dp"
+        android:text="@string/labelNumberOfPeople"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/etBase"
+        app:layout_constraintStart_toEndOf="@id/etBase"
+        app:layout_constraintTop_toTopOf="@id/etBase" />
 
+    <EditText
+        android:id="@+id/etNumberOfPeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:ems="2"
+        android:inputType="number"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/labelNumberOfPeople"
+        app:layout_constraintStart_toEndOf="@id/labelNumberOfPeople"
+        app:layout_constraintTop_toTopOf="@id/labelNumberOfPeople" />
+
+    <!--Segunda fila-->
     <TextView
-        android:id="@+id/tvTotal"
+        android:id="@+id/tvTipPercent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/LabelTotal"
-        app:layout_constraintStart_toStartOf="@+id/tvTipAmount"
-        app:layout_constraintTop_toTopOf="@+id/LabelTotal"
-        tools:text="100.00" />
-
+        app:layout_constraintEnd_toEndOf="@id/LabelBase"
+        app:layout_constraintTop_toBottomOf="@id/LabelBase"
+        tools:text="24%" />
     <SeekBar
         android:id="@+id/sbTip"
         android:layout_width="wrap_content"
@@ -125,15 +77,15 @@
         app:layout_constraintTop_toTopOf="@+id/tvTipPercent" />
 
     <TextView
-        android:id="@+id/tvTipPercent"
+        android:id="@+id/tipQualityLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/LabelBase"
-        app:layout_constraintTop_toBottomOf="@id/LabelBase"
-        tools:text="24%" />
+        app:layout_constraintEnd_toEndOf="@id/sbTip"
+        app:layout_constraintStart_toStartOf="@id/sbTip"
+        app:layout_constraintTop_toBottomOf="@id/sbTip"
+        tools:text="Good 😶" />
 
+    <!--Tercera fila-->
     <TextView
         android:id="@+id/LabelTip"
         android:layout_width="wrap_content"
@@ -142,7 +94,17 @@
         android:text="@string/labeltip"
         app:layout_constraintEnd_toEndOf="@+id/tvTipPercent"
         app:layout_constraintTop_toBottomOf="@+id/tvTipPercent" />
+    <TextView
+        android:id="@+id/tvTipAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/LabelTip"
+        app:layout_constraintStart_toStartOf="@+id/sbTip"
+        app:layout_constraintTop_toTopOf="@+id/LabelTip"
+        tools:text="17.00" />
 
+    <!--Cuarta fila-->
     <TextView
         android:id="@+id/LabelTotal"
         android:layout_width="wrap_content"
@@ -151,31 +113,36 @@
         android:text="@string/precio_toal"
         app:layout_constraintEnd_toEndOf="@+id/LabelTip"
         app:layout_constraintTop_toBottomOf="@+id/LabelTip" />
-
     <TextView
-        android:id="@+id/LabelPromo"
+        android:id="@+id/tvTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:text="@string/labelPromo"
-        android:textAllCaps="true"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/LabelTotal"
+        app:layout_constraintStart_toStartOf="@+id/tvTipAmount"
+        app:layout_constraintTop_toTopOf="@+id/LabelTotal"
+        tools:text="100.00" />
+    <TextView
+        android:id="@+id/labelIndividualBudget"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:text="@string/app_name"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="64dp"
+        android:text="@string/labelIndividual"
+        app:layout_constraintBottom_toBottomOf="@id/tvTotal"
+        app:layout_constraintStart_toEndOf="@id/tvTotal"
+        app:layout_constraintTop_toTopOf="@id/tvTotal" />
+    <TextView
+        android:id="@+id/tvIndividualBudget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/labelIndividualBudget"
+        app:layout_constraintStart_toEndOf="@id/labelIndividualBudget"
+        app:layout_constraintTop_toTopOf="@id/labelIndividualBudget"
+        tools:text="20" />
 
+    <!--Quinta fila-->
     <TextView
         android:id="@+id/labelRoundTotal"
         android:layout_width="wrap_content"
@@ -209,5 +176,17 @@
         app:layout_constraintStart_toStartOf="@+id/btRoundUp"
         app:layout_constraintTop_toBottomOf="@id/btRoundUp" />
 
+    <!--Abajo fila-->
+    <TextView
+        android:id="@+id/LabelPromo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:text="@string/labelPromo"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
