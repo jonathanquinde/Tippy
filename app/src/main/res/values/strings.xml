@@ -10,4 +10,5 @@
     <string name="press_o_round_up">Press\nto\nround up</string>
     <string name="btRoundUp">Up</string>
     <string name="btRoundDown">Down\t</string>
+    <string name="Empty">---</string>
 </resources>

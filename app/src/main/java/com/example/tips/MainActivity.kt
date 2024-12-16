@@ -91,8 +91,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun calculateTipAmount() {
         if (etBase.text.isEmpty()) {
-            tvTipAmount.text = String.format(Locale.getDefault(), "")
-            tvTotal.text = String.format(Locale.getDefault(), "")
             return
         }
         val baseAmount = etBase.text.toString().toDouble()

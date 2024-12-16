@@ -63,9 +63,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:textStyle="bold"
+        android:text="@string/Empty"
         app:layout_constraintEnd_toEndOf="@id/LabelBase"
         app:layout_constraintTop_toBottomOf="@id/LabelBase"
-        tools:text="24%" />
+        tools:text="---" />
     <SeekBar
         android:id="@+id/sbTip"
         android:layout_width="wrap_content"
@@ -99,10 +100,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:text="@string/Empty"
         app:layout_constraintBottom_toBottomOf="@+id/LabelTip"
         app:layout_constraintStart_toStartOf="@+id/sbTip"
         app:layout_constraintTop_toTopOf="@+id/LabelTip"
-        tools:text="17.00" />
+        tools:text="---" />
 
     <!--Cuarta fila-->
     <TextView
@@ -118,10 +120,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:text="@string/Empty"
         app:layout_constraintBottom_toBottomOf="@+id/LabelTotal"
         app:layout_constraintStart_toStartOf="@+id/tvTipAmount"
         app:layout_constraintTop_toTopOf="@+id/LabelTotal"
-        tools:text="100.00" />
+        tools:text="---" />
     <TextView
         android:id="@+id/labelIndividualBudget"
         android:layout_width="wrap_content"
@@ -137,10 +140,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:textStyle="bold"
+        android:text="@string/Empty"
         app:layout_constraintBottom_toBottomOf="@id/labelIndividualBudget"
         app:layout_constraintStart_toEndOf="@id/labelIndividualBudget"
         app:layout_constraintTop_toTopOf="@id/labelIndividualBudget"
-        tools:text="20" />
+        tools:text="---" />
 
     <!--Quinta fila-->
     <TextView
