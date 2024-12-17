@@ -4,6 +4,7 @@ import android.animation.ArgbEvaluator
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Button
 import android.widget.EditText
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
@@ -27,6 +28,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvTipQualityLabel: TextView
     private lateinit var etNumberOfPeople: EditText
     private lateinit var tvIndividualBudget: TextView
+    private lateinit var btRoundUp: Button
+    private lateinit var btRoundDown: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         tvTipAmount = findViewById(R.id.tvTipAmount)
         tvTotal = findViewById(R.id.tvTotal)
         tvIndividualBudget = findViewById(R.id.tvIndividualBudget)
+        btRoundUp = findViewById(R.id.btRoundUp)
+        btRoundDown = findViewById(R.id.btRoundDown)
 
         etBase.addTextChangedListener(object: TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -70,6 +75,25 @@ class MainActivity : AppCompatActivity() {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
+        btRoundUp.setOnClickListener { roundUpAndDown(true) }
+        btRoundDown.setOnClickListener { roundUpAndDown(false) }
+    }
+
+    private fun roundUpAndDown(up: Boolean) {
+        if (etBase.text.isEmpty() || sbTip.progress == 0)
+            return
+        val tipAmount = tvTipAmount.text.toString().replace(',', '.').toDouble()
+        val totalAmount = tvTotal.text.toString().replace(',', '.').toDouble()
+        val decimals = tipAmount - tipAmount.toLong()
+        if (up) {
+            if (decimals == 0.0)
+                return
+            tvTipAmount.text = String.format(Locale.getDefault(), "%.2f", tipAmount + 1 - decimals)
+            tvTotal.text = String.format(Locale.getDefault(), "%.2f", totalAmount + 1 - decimals)
+        } else {
+            tvTipAmount.text = String.format(Locale.getDefault(), "%.2f", tipAmount - decimals)
+            tvTotal.text = String.format(Locale.getDefault(), "%.2f", totalAmount - decimals)
+        }
     }
 
     private fun calculateIndividualBudget() {
