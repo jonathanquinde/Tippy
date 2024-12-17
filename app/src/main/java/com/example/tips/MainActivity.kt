@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
-                calculateTipAmount()
+                calculateIndividualBudget()
             }
 
         })
@@ -70,6 +70,19 @@ class MainActivity : AppCompatActivity() {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
+    }
+
+    private fun calculateIndividualBudget() {
+        if (etNumberOfPeople.text.isEmpty() || etBase.text.isEmpty()) {
+            tvIndividualBudget.text = getString(R.string.Empty)
+            return
+        }
+        val base = etBase.text.toString().toDouble()
+        val nPeople = etNumberOfPeople.text.toString().toInt()
+        if (nPeople == 0)
+            tvIndividualBudget.text = getString(R.string.Empty)
+        else
+            tvIndividualBudget.text = String.format(Locale.getDefault(), "%.2f", base/nPeople)
     }
 
     private fun calculateTipQuality(progress: Int) {
@@ -91,24 +104,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun calculateTipAmount() {
         if (etBase.text.isEmpty()) {
+            tvTotal.text = getString(R.string.Empty)
+            tvTipAmount.text = getString(R.string.Empty)
+            tvIndividualBudget.text = getString(R.string.Empty)
             return
         }
         val baseAmount = etBase.text.toString().toDouble()
         val tipPercent = sbTip.progress
         val tipAmount = baseAmount * tipPercent / 100
-        val total = tipAmount + baseAmount
         tvTipAmount.text = String.format(Locale.getDefault(), "%.2f", tipAmount)
-        tvTotal.text = String.format(Locale.getDefault(), "%.2f", total)
-        if (etNumberOfPeople.text.isNotEmpty()) {
-            calculateIndividualBudget(total)
-        }
-        else {
-            tvIndividualBudget.text = String.format(Locale.getDefault(), "%.2f", total)
-        }
-    }
-
-    private fun calculateIndividualBudget(total: Double) {
-        val numberOfPersons = etNumberOfPeople.text.toString().toInt()
-        tvIndividualBudget.text = String.format(Locale.getDefault(),"%.2f", total/numberOfPersons)
+        tvTotal.text = String.format(Locale.getDefault(), "%.2f", baseAmount + tipAmount)
+        calculateIndividualBudget()
     }
 }
